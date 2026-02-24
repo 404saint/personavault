@@ -1,38 +1,106 @@
-# PersonA-Vault  
-**Elite Digital Persona Management for Security Professionals**  
+# PersonA-Vault
 
----
+**Secure Digital Persona Management for Security Professionals**
 
-## **Overview**  
-PersonA-Vault is a secure, command-line-driven vault designed to manage, track, and protect multiple digital personas. It enables security professionals, ethical hackers, and privacy-conscious individuals to safely organize identities, monitor usage, and maintain operational security without risk of exposure.  
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Status](https://img.shields.io/badge/Status-Active%20Development-orange)
+![Security Focus](https://img.shields.io/badge/Focus-Operational%20Security-red)
 
-At its core, PersonA-Vault ensures that sensitive persona data is **encrypted, auditable, and compartmentalized**, giving you full control over your digital footprint.  
 
----
 
-## **Key Features**  
+## Overview
 
-- **Persona Management:** Create, edit, retire, or burn digital personas.  
-- **Usage Tracking:** Log persona activity with timestamps, platforms, and notes.  
-- **Risk Assessment:** Automatic risk scoring based on usage and status.  
-- **Tagging & Search:** Filter personas by tags, status, or activity.  
-- **Export & Backup:** Securely export or backup your vault with encryption.  
-- **Logging:** Full activity logs for audit and accountability.  
-- **CLI-First:** Lightweight, dependency-minimal, and fully scriptable.  
+**PersonA-Vault** is a secure, command-line-driven vault engineered for structured digital identity compartmentalization.
 
----
+It is designed for security professionals, ethical hackers, researchers, and privacy-conscious operators who require strict separation between personas, controlled activity logging, and measurable exposure risk.
+
+The system enforces encryption, auditability, and lifecycle control — ensuring that sensitive persona data remains protected, traceable, and operationally contained.
+
+This is not a password manager.
+It is an operational security tool.
+
+
+
+## Core Capabilities
+
+* **Persona Lifecycle Management**
+  Create, modify, retire, or permanently burn digital personas.
+
+* **Structured Usage Logging**
+  Track activity with timestamps, platforms, context notes, and tags.
+
+* **Dynamic Risk Scoring Engine**
+  Evaluate exposure levels based on usage frequency, status, and activity history.
+
+* **Compartmentalized Data Model**
+  Isolated persona objects with controlled state transitions.
+
+* **Encrypted Vault Storage**
+  Data encrypted at rest with master password protection.
+
+* **Audit Trail & Accountability**
+  All state-changing actions are logged.
+
+* **CLI-First Architecture**
+  Lightweight, dependency-minimal, automation-friendly, and scriptable.
+
+
+
 ## Architecture
 
 <p align="center">
-  <img src="assets/personavault_architecture(simplified).png" alt="PersonA-Vault Architecture">
+  <img src="assets/personavault_architecture(simplified).png" alt="PersonA-Vault Architecture" width="900">
 </p>
 
----
-## **Installation**  
+### System Design Principles
 
-### **Requirements**  
-- Python 3.11+  
-- Virtual environment recommended  
+PersonA-Vault follows a modular architecture built around separation of concerns:
+
+* **CLI Layer** — Entry point for user interaction
+* **Core Vault Engine** — Persona state management and lifecycle control
+* **Crypto Module** — Encryption and secure data persistence
+* **Risk Engine** — Exposure analysis logic
+* **Logging Module** — Immutable activity trail
+
+All interactions pass through the CLI into `main.py`, which coordinates internal modules while preserving isolation between responsibilities.
+
+This architecture reduces attack surface, improves maintainability, and enforces strict operational boundaries between personas.
+
+
+
+## Threat Model
+
+PersonA-Vault is designed under the assumption that:
+
+* The operator may manage multiple high-risk or sensitive personas.
+* Exposure correlation between identities must be minimized.
+* Local device compromise is possible, therefore encryption at rest is mandatory.
+* Operational mistakes (reuse, overexposure, inactivity mismanagement) increase risk over time.
+
+### Security Objectives
+
+* Prevent cross-persona linkage through structured compartmentalization.
+* Protect vault data against unauthorized local access.
+* Maintain audit visibility of persona lifecycle events.
+* Provide measurable risk feedback to inform operational decisions.
+
+PersonA-Vault does **not**:
+
+* Protect against full system compromise.
+* Replace hardened operating system practices.
+* Eliminate human error.
+
+It reduces risk through structure and discipline — not illusion.
+
+
+
+## Installation
+
+### Requirements
+
+* Python 3.11+
+* Virtual environment recommended
 
 ```bash
 # Optional: create a virtual environment
@@ -41,96 +109,102 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
-````
+```
 
----
 
-## **Usage Examples**
 
-> **Initialize vault:**
+## Usage
+
+### Initialize Vault
 
 ```bash
 python -m personavault.main init
 ```
 
-> **Unlock vault:**
+### Unlock Vault
 
 ```bash
 python -m personavault.main unlock
 ```
 
-> **Create a new persona:**
+### Create Persona
 
 ```bash
 python -m personavault.main new
 ```
 
-> **List all personas:**
+### List Personas
 
 ```bash
 python -m personavault.main lst
 ```
 
-> **View persona details:**
+### View Persona Details
 
 ```bash
 python -m personavault.main view
 ```
 
-> **Burn or retire a persona:**
+### Burn or Retire Persona
 
 ```bash
 python -m personavault.main burn
 python -m personavault.main retire
 ```
 
-> **Search personas by tag or status:**
+### Search by Tag or Status
 
 ```bash
 python -m personavault.main search --tag darkweb --status active
 ```
 
-> **Export or backup vault securely:**
+### Export or Backup Vault
 
 ```bash
 python -m personavault.main export
 python -m personavault.main backup
 ```
 
-> **Show risk score of a persona:**
+### Risk Assessment
 
 ```bash
 python -m personavault.main risk
 ```
 
-> Full command reference:
+### Full Command Reference
 
 ```bash
 python -m personavault.main --help
 ```
 
----
 
-## **Security & Data Handling**
 
-* All persona data is encrypted at rest.
-* Master password protects vault access and exports.
-* Actions (creation, edits, usage, burn/retire) are logged for auditing.
-* Personas can be retired or permanently burned to mitigate exposure.
+## Security & Data Handling
 
----
+* Vault data encrypted at rest.
+* Master password required for unlock and export.
+* Structured persona state transitions (active → retired → burned).
+* Immutable logging of high-impact operations.
+* Designed around compartmentalization principles to minimize identity bleed-over.
 
-## **Roadmap / Future Plans**
+Security is enforced by design, not by convention.
 
-* Version 2: GUI integration for easier management.
-* Automated testing and CI/CD setup.
-* Advanced analytics for persona usage and risk trends.
-* Enhanced tag management and reporting features.
 
----
 
-## **License & Contribution**
+## Roadmap
 
-* Open-source and community-friendly.
-* MIT Licence
-* Contributions are welcome; ensure changes maintain security integrity.
+* Optional GUI interface (without weakening CLI foundation)
+* Automated testing suite
+* CI/CD integration
+* Enhanced analytics and reporting engine
+* Vault integrity verification mechanisms
+* Configurable risk scoring model
+
+
+
+## License
+
+MIT License
+
+Open-source and contribution-friendly.
+All contributions must preserve architectural integrity and security posture.
