@@ -50,8 +50,8 @@ It is an operational security tool.
 ## Architecture
 
 <p align="center">
-  <a href="assets/personavault_architecture(simplified).png">
-    <img src="assets/personavault_architecture(simplified).png" alt="PersonA-Vault Architecture" width="900">
+  <a href="assets/personavault_architecture.png">
+    <img src="assets/personavault_architecture.png" alt="PersonA-Vault Architecture" width="900">
   </a>
 </p>
 
@@ -210,4 +210,5 @@ MIT License
 
 Open-source and contribution-friendly.
 All contributions must preserve architectural integrity and security posture.
+
 
